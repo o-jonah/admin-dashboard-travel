@@ -24,7 +24,7 @@ const StatsCard = ({
         <div className="flex items-center gap-2">
           <figure className="flex items-center gap-1">
             <img
-              src={`/assests/icons/${
+              src={`/assets/icons/${
                 isDecrement ? "arrow-down-red.svg" : "arrow-up-green.svg"
               }`}
               className="size-5"
@@ -45,7 +45,7 @@ const StatsCard = ({
       </div>
       <div>
         <img
-          src={`/assests/icons/${
+          src={`/assets/icons/${
             isDecrement ? "decrement.svg" : "increment.svg"
           } `}
           className="xl:w-32 w-full h-full md:h-32 xl:h-full "

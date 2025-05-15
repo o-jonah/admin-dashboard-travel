@@ -1,7 +1,60 @@
-const TripCard = () => {
-  return (
-    <div>Trips</div>
-  )
+import { Link, useLocation } from "react-router";
+
+import { ChipListComponent, ChipDirective } from '@syncfusion/ej2-react-buttons';
+import { getFirstWord } from "lib/utils";
+import { cn } from "lib/utils"; 
+
+interface TripCardProps {
+  id: string;
+  name: string;
+  location: string;
+  imageUrl: string;
+  tags?: string[];
+  price?: number;
 }
 
-export default TripCard
+const TripCard = ({ id, name, location, imageUrl, tags = [], price }: TripCardProps) => {
+  const path = useLocation();
+
+  const to =
+    path.pathname === "/" || path.pathname.startsWith("/travel")
+      ? `/travel/${id}`
+      : `/trips/${id}`;
+
+  return (
+    <Link to={to} className="trip-card">
+      <img src={imageUrl} alt={name} />
+
+      <article>
+        <h2>{name}</h2>
+        <figure>
+          <img
+            src="/assets/icons/location-mark.svg"
+            alt="location" className='size-4' 
+          />
+          <figcaption>{location}</figcaption>
+        </figure>
+      </article>
+
+      <div className="mt-5 pl-[18px] pr-3.5 pb-5">
+        <ChipListComponent id="travel-chip">
+          {tags.map((tag, index) => (
+            <ChipDirective
+              key={index}
+              text={getFirstWord(tag)}
+              cssClass={cn(
+                index === 1
+                  ? "!bg-pink-50 !text-pink-500"
+                  : "!bg-success-50 !text-success-700"
+              )}
+            />
+          ))}
+        </ChipListComponent>
+      </div>
+
+      <article className="tripCard-pill">{price}</article>
+    </Link>
+  );
+};
+
+export default TripCard;
