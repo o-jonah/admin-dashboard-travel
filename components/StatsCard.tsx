@@ -1,4 +1,4 @@
-import { calculateTrendPercentage } from "lib/utils";
+import { calculateTrendPercentage, cn } from "lib/utils";
 
 const StatsCard = ({
   headerTitle,
